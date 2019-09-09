@@ -95,7 +95,7 @@ https://github.com/cteamx/Thief-Book/blob/master/images/mouse.gif
 
 # 注意事项
 
-- **股票** ( 5秒更新一次 ) , 显示格式为  `当前价格`,`跌涨百分比`
+- **股票** ( 5秒更新一次 ) , 显示格式为  `当前价格`,`跌涨百分比`, buy:(`买1`:`手`) sell:(`卖1`:`手`)
 
 - **股票代码格式**，列：贵州茅台 ( 600519.SH ) ，设置里写 **sh600519**
 
@@ -220,13 +220,12 @@ or
 - [ ] 多本小说管理
 - [ ] 在线小说下载
 
-## 关于
+***
 
-- 出品：C.TEAM
-- E-mail：service@c.team
+打包方法: 
+```
+npm install --registry=https://r.npm.taobao.org
+npm run script build:mac
+```
 
-## 反馈群
-
-加微信，备注 摸鱼 拉人
-
-![wechat](./images/wechat.jpg)
+> 打包产物在build目录中

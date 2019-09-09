@@ -19,8 +19,12 @@ export default {
             var arr = body.toString().split(",")
             var today_price = parseFloat(arr[1]);
             var curr_price = parseFloat(arr[3]);
-            var percentage = (curr_price - today_price) / today_price * 100
-            var text = curr_price.toFixed(2) + "," + percentage.toFixed(2) + "%";
+            var buy1 = parseFloat(arr[11]);
+            var buy1Count = parseInt(arr[10])/100;
+            var sell1 = parseFloat(arr[21]);
+            var sell1Count = parseInt(arr[20])/100;
+            var percentage = (curr_price - today_price) / today_price * 100;
+            var text = curr_price.toFixed(2) + "," + percentage.toFixed(2) + "%" + "; buy:(" + buy1.toFixed(2) + ": " + buy1Count + ") sell:(" + sell1.toFixed(2) + ": " + sell1Count + ")";
             callback(text)
         })
     }
