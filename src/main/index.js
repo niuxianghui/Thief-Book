@@ -303,7 +303,7 @@ function AutoStock() {
     clearInterval(autoStockTime);
 
     autoStockTime = setInterval(function () {
-      stock.getData(display_shares_list[0], function (text) {
+      stock.getData(display_shares_list, function (text) {
         updateText(text);
       })
     }, parseInt(5) * 1000);
@@ -340,7 +340,7 @@ function NextPage() {
   let display_shares_list = db.get('display_shares_list');
 
   if (display_model === '2') {
-    stock.getData(display_shares_list[0], function (text) {
+    stock.getData(display_shares_list, function (text) {
       updateText(text);
     })
   } else {
@@ -354,7 +354,7 @@ function PreviousPage() {
   let display_shares_list = db.get('display_shares_list');
 
   if (display_model === '2') {
-    stock.getData(display_shares_list[0], function (text) {
+    stock.getData(display_shares_list, function (text) {
       updateText(text);
     })
   } else {
@@ -643,7 +643,7 @@ function createTray() {
         db.set("display_model", "2");
         let display_shares_list = db.get('display_shares_list');
 
-        stock.getData(display_shares_list[0], function (text) {
+        stock.getData(display_shares_list, function (text) {
           updateText(text);
           AutoStock();
         })

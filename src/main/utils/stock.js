@@ -9,7 +9,10 @@ const headers = {
 }
 
 export default {
-    getData(code, callback) {
+    getData(display_shares_list, callback) {
+        var code = display_shares_list[0];
+        var stock_number = display_shares_list[1];
+        var stock_avg = display_shares_list[2];
         request({
             url: url + code,
             method: "GET",
@@ -24,7 +27,14 @@ export default {
             var sell1 = parseFloat(arr[21]);
             var sell1Count = parseInt(arr[20])/100;
             var percentage = (curr_price - today_price) / today_price * 100;
-            var text = curr_price.toFixed(2) + "," + percentage.toFixed(2) + "%" + "; buy:(" + buy1.toFixed(2) + ": " + buy1Count + ") sell:(" + sell1.toFixed(2) + ": " + sell1Count + ")";
+            // 计算当前总股价
+            var sumPrice = curr_price * stock_number;
+            var sumChengben = stock_avg * stock_number;
+            var diff = sumPrice - sumChengben;
+            var text = curr_price.toFixed(2) +
+             " " + buy1.toFixed(2) + ":" +
+              buy1Count + " " + sell1.toFixed(2) + 
+              ":" + sell1Count + " " + stock_number + "-" + stock_avg + " $:" + diff.toFixed(2);
             callback(text)
         })
     }

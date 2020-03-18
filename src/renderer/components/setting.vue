@@ -196,10 +196,30 @@
               prefix-icon="el-icon-sugar"
             ></el-input>
           </el-form-item>
+          <!-- 这里是添加的持仓数量 -->
+          <el-form-item label="持仓数量">
+            <el-input
+              style="width:111px;"
+              v-model="stock_number"
+              maxlength="10"
+              size="mini"
+              placeholder="请输入持仓数量"
+            ></el-input>
+          </el-form-item>
+          <!-- 这里是添加的持仓平均成本 -->
+          <el-form-item label="平均成本">
+            <el-input
+              style="width:111px;"
+              v-model="stock_avg"
+              maxlength="10"
+              size="mini"
+              placeholder="请输入平均成本"
+            ></el-input>
+          </el-form-item>
           <!-- <el-form-item label="股票模式">
             <el-switch v-model="is_display_shares" @change="onModel2"></el-switch>
           </el-form-item>-->
-          <span class="nbx">此处未来有更牛逼的功能</span>
+          <!-- <span class="nbx">此处未来有更牛逼的功能</span> -->
         </el-form>
       </div>
       <hr />
@@ -240,7 +260,9 @@ export default {
       is_display_page: true,
       is_display_joke: false,
       is_display_shares: false,
-      stock_code: ""
+      stock_code: "",
+      stock_number: 0,
+      stock_avg: 0
     };
   },
   created() {
@@ -427,6 +449,8 @@ export default {
       this.is_display_page = db.get("is_display_page");
 
       this.stock_code = db.get("display_shares_list")[0];
+      this.stock_number = db.get("display_shares_list")[1];
+      this.stock_avg = db.get("display_shares_list")[2];
       // this.is_display_joke = db.get("is_display_joke");
       // this.is_display_shares = db.get("is_display_shares");
     },
@@ -458,7 +482,7 @@ export default {
       // db.set("is_display_joke", this.is_display_joke);
       // db.set("is_display_shares", this.is_display_shares);
 
-      db.set("display_shares_list", [this.stock_code]);
+      db.set("display_shares_list", [this.stock_code, this.stock_number, this.stock_avg]);
 
       ipcRenderer.send("bg_text_color", "ping");
 
