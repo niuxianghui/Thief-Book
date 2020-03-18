@@ -20,7 +20,7 @@ export default {
             headers: headers
         }, function (err, res, body) {
             var arr = body.toString().split(",")
-            var today_price = parseFloat(arr[1]);
+            var today_price = parseFloat(arr[2]);
             var curr_price = parseFloat(arr[3]);
             var buy1 = parseFloat(arr[11]);
             var buy1Count = parseInt(arr[10])/100;
@@ -32,9 +32,9 @@ export default {
             var sumChengben = stock_avg * stock_number;
             var diff = sumPrice - sumChengben;
             var text = curr_price.toFixed(2) +
-             " " + buy1.toFixed(2) + ":" +
-              buy1Count + " " + sell1.toFixed(2) + 
-              ":" + sell1Count + " " + stock_number + "-" + stock_avg + " $:" + diff.toFixed(2);
+             " " + percentage.toFixed(2) + " " + buy1.toFixed(2) + ":" +
+              buy1Count.toFixed(0) + " " + sell1.toFixed(2) + 
+              ":" + sell1Count.toFixed(0) + " " + stock_avg + " " + diff.toFixed(2);
             callback(text)
         })
     }

@@ -14,7 +14,19 @@
         v-show="is_mouse_model=='1'"
       >{{text}}</div>
 
-      <div class="text" v-show="is_mouse_model=='0'">{{text}}</div>
+      <div class="text" v-show="is_mouse_model=='0'">
+        <span>{{text.split(' ')[0]}}</span>
+        <span 
+        style="color:#01c542;white-space: pre-wrap;" v-if="text.split(' ')[1].indexOf('-') > -1"
+        >%{{text.split(' ')[1].replace('-','')}}   </span>
+        <span style="color:#fd8c89;white-space: pre-wrap;" v-else>{{text.split(' ')[1]}}   </span>
+        <span style="color:#fd8c89">{{text.split(' ')[2]}}</span>
+        <span style="color:#0ba9f9;white-space: pre-wrap;">{{text.split(' ')[3]}}   </span>
+        <span>{{text.split(' ')[4]}}</span>
+        <span style="color:#01c542" v-if="text.split(' ')[5].indexOf('-') > -1"
+          >{{text.split(' ')[5].replace('-','')}}</span>
+        <span style="color:#fd8c89" v-else>{{text.split(' ')[5]}}</span>
+        </div>
     </div>
   </el-container>
 </template>
